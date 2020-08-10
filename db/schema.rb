@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_10_190014) do
+ActiveRecord::Schema.define(version: 2020_08_10_202024) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "country_code"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2020_08_10_190014) do
     t.integer "provider_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "fax_number"
     t.index ["provider_id"], name: "index_addresses_on_provider_id"
   end
 
@@ -34,6 +35,7 @@ ActiveRecord::Schema.define(version: 2020_08_10_190014) do
     t.integer "npi"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "position"
   end
 
   create_table "taxonomies", force: :cascade do |t|

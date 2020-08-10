@@ -1,0 +1,18 @@
+<%= form_tag(providers_path, method: :get) do %>
+  <%= text_field_tag(:query) %>
+  <%= submit_tag("Search") %>
+<% end %>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Npi</th>
+    <th>Position</th>
+  </tr>
+  <% @providers.each do |provider| %>
+    <tr>
+      <td><%= provider.name %></td>
+      <td><%= provider.npi %></td>
+      <td><%= provider.position %></td>
+    </tr>
+  <% end %>
+</table>

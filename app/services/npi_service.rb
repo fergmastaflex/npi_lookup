@@ -13,7 +13,8 @@ class NpiService
     # Host must be specified in order to force ipv4
     # The NPPES API does not do ipv6
     response = HTTParty.get(request_uri, local_host: ip_address)
-    parse_provider(response['results'].first)
+    raise ErrorHandler::NpiError if response['Errors'].present?
+    parse_provider(response['results'].first).deep_symbolize_keys
   end
 
   private
@@ -21,15 +22,15 @@ class NpiService
   attr_reader :number
 
   def ip_address
-    Socket.ip_address_list.select(&:ipv4?).detect{|addr| addr.ip_address != '127.0.0.1'}.ip_address
+    Socket.ip_address_list.select(&:ipv4?).detect{ |addr| addr.ip_address != '127.0.0.1' }.ip_address
   end
 
   def parse_provider(response)
     {
       npi: response['number'],
       name: response['basic']['name'],
-      addresses: response['addresses'],
-      taxonomies: response['taxonomies']
+      addresses_attributes: response['addresses'],
+      taxonomies_attributes: response['taxonomies']
     }
   end
 

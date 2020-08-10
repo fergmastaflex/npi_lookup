@@ -1,24 +1,10 @@
-# README
+# Setup
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- run `bin/setup`
+- run `yarn install`
+- run `bundle exec rails console`
+- navigate to `localhost:3000`
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Important notes
+- There were serious issues with Ruby clients contacting the NPPES API. The API does not accept ipv6, so the I had to force that when contacting the API. That took quite a while to troubleshoot.
+- You can rearrange the rows in the table, and it will persist.

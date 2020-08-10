@@ -1,0 +1,7 @@
+<nav class="navbar navbar-light bg-light">
+  <span class="navbar-brand mb-0 h1">NPI Lookup</span>
+  <%= form_tag(providers_path, method: :get, class: 'form-inline') do %>
+    <%= text_field_tag(:query, '', class: 'form-control mr-sm-2') %>
+    <%= submit_tag("Search", class: 'btn btn-outline-success my-2 my-sm-0') %>
+  <% end %>
+</nav>

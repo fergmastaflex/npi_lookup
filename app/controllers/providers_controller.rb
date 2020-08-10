@@ -4,7 +4,16 @@ class ProvidersController < ApplicationController
     @providers = Provider.includes(:addresses, :taxonomies).order(position: :asc)
   end
 
+  def update
+    @provider = Provider.find(params[:id])
+    @provider.update!(provider_params)
+  end
+
   private
+
+  def provider_params
+    params.permit(:position)
+  end
 
   def find_or_create_provider(number)
     return unless number.present?

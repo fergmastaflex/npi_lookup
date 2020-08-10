@@ -6,8 +6,8 @@ describe NpiService do
   let(:example_response) { JSON.parse(fixture) }
   let(:npi) { example_response['results'].first['number'] }
   let(:name) { example_response['results'].first['basic']['name'] }
-  let(:addresses) { example_response['results'].first['addresses'] }
-  let(:taxonomies) { example_response['results'].first['taxonomies'] }
+  let(:addresses) { example_response['results'].first['addresses'].map(&:symbolize_keys) }
+  let(:taxonomies) { example_response['results'].first['taxonomies'].map(&:symbolize_keys) }
 
   subject { described_class.new(number) }
 
@@ -17,8 +17,8 @@ describe NpiService do
     it 'returns hash of provider attributes' do
       expect(subject.get_provider[:npi]).to eq(npi)
       expect(subject.get_provider[:name]).to eq(name)
-      expect(subject.get_provider[:addresses]).to eq(addresses)
-      expect(subject.get_provider[:taxonomies]).to eq(taxonomies)
+      expect(subject.get_provider[:addresses_attributes]).to eq(addresses)
+      expect(subject.get_provider[:taxonomies_attributes]).to eq(taxonomies)
     end
   end
 end

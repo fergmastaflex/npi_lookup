@@ -1,18 +1,25 @@
-<%= form_tag(providers_path, method: :get) do %>
-  <%= text_field_tag(:query) %>
-  <%= submit_tag("Search") %>
-<% end %>
-<table>
+<table class='table'>
   <tr>
-    <th>Name</th>
-    <th>Npi</th>
-    <th>Position</th>
+    <th scope="col">Name</th>
+    <th scope="col">NPI</th>
+    <th scope="col">ID</th>
+    <th scope="col">Address</th>
+    <th scope="col">Phone Number</th>
+    <th scope="col">Move</th>
   </tr>
-  <% @providers.each do |provider| %>
-    <tr>
-      <td><%= provider.name %></td>
-      <td><%= provider.npi %></td>
-      <td><%= provider.position %></td>
-    </tr>
-  <% end %>
+  <tbody id='#providers'>
+    <% @providers.each do |provider| %>
+      <tr data-toggle='collapse' data-target=<%= "collapse_#{provider.id}" %>>
+        <td><%= provider.name %></td>
+        <td><%= provider.npi %></td>
+        <td><%= provider.id %></td>
+        <td>
+          <%= provider.addresses.first.address_1 %>
+          <%= provider.addresses.first.address_2 %>
+        </td>
+        <td><%= provider.addresses.first.telephone_number %></td>
+        <td><p>&#8645;</p></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>

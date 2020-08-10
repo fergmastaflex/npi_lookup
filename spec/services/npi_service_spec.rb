@@ -11,14 +11,14 @@ describe NpiService do
 
   subject { described_class.new(number) }
 
-  describe '#lookup' do
+  describe '#get_provider' do
     before { allow(HTTParty).to receive(:get).and_return(example_response) }
 
     it 'returns hash of provider attributes' do
-      expect(subject.lookup[:npi]).to eq(npi)
-      expect(subject.lookup[:name]).to eq(name)
-      expect(subject.lookup[:addresses]).to eq(addresses)
-      expect(subject.lookup[:taxonomies]).to eq(taxonomies)
+      expect(subject.get_provider[:npi]).to eq(npi)
+      expect(subject.get_provider[:name]).to eq(name)
+      expect(subject.get_provider[:addresses]).to eq(addresses)
+      expect(subject.get_provider[:taxonomies]).to eq(taxonomies)
     end
   end
 end

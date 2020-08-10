@@ -1,11 +1,15 @@
 class NpiService
   BASE_URI = 'https://npiregistry.cms.hhs.gov/api/?version=2.0'.freeze
 
+  def self.get_provider(number)
+    self.new(number).get_provider
+  end
+
   def initialize(number)
     @number = number
   end
 
-  def lookup
+  def get_provider
     # Host must be specified in order to force ipv4
     # The NPPES API does not do ipv6
     response = HTTParty.get(request_uri, local_host: ip_address)
